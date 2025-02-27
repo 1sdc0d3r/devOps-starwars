@@ -1,48 +1,43 @@
 const starships = [];
 const pilots = {};
+// let url_page = 0;
+// let req_fail = 0;
 
 async function fetch_starships(url = "https://swapi.dev/api/starships") {
-    try {
+    try  {
+        // url_page++
+        console.log(`fetching ${url}`)
+        //* attempt to fetch next paginated url before prior fetch
+        // await fetch_starships(url+`/?page=${url_page}`)
+
         const response = await fetch(url);
         const data = await response.json();
 
+        //* Put this here to decrease fetch time needed
+        if (data.next) await fetch_starships(data.next);
+
         starships.push(...data.results);
 
-        if (data.next) await fetch_starships(data.next);
+
     } catch (err) {
-        console.error("error in fetch_starships(): ", err);
+        console.error("error in fetching starships: ", err);
     }
-    // await fetch(url)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         // console.log(data)
-    //         url = data.next;
-    //         starships.push(...data.results);
-    //     })
-    //     .catch(error => console.error('Error:', error));
-    // console.log(url)
-    //! if (url) await fetch_starships(url);
 }
 
 async function fetch_pilot(pilot) {
     //! if (pilots[pilot]) return; // prev duplicate fetches - redundant due to Set
-    // console.log({pilot})
+    console.log(`fetching pilot: ${pilot}`)
     try {
         const response = await fetch(`https://swapi.dev/api/people/${pilot}`);
         pilots[pilot] = await response.json();
     } catch (err) {
+        console.error("pil-err- ", {response})
         console.error(`error fetching pilot ${pilot}: `, err)
     }
-    // await fetch(`https://swapi.dev/api/people/${pilot}`)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         // console.log(data)
-    //         pilots[pilot] = data;
-    //     })
-    //     .catch(error => console.error('Error:', error));
 }
 
 await fetch_starships();
+console.log("starships fetched")
 
 // get a list of all pilots then fetch in parallel
 const pilotNums = new Set();
