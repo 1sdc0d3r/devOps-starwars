@@ -9,7 +9,8 @@ COPY package*.json ./
 RUN apt-get update && \
 apt-get install -y curl gnupg && \
 curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-apt-get install -y nodejs
+apt-get install -y nodejs && \
+npm config set update-notifier false
 #npm install -g npm@latest #! not necessary
 
 COPY . .
