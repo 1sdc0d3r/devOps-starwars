@@ -25,7 +25,7 @@ async function fetch_starships(url = "https://swapi.dev/api/starships") {
 }
 
 async function fetch_pilot(pilot) {
-    if (pilots[pilot]) return; // prev duplicate fetches
+    //! if (pilots[pilot]) return; // prev duplicate fetches - redundant due to Set
     // console.log({pilot})
     try {
         const response = await fetch(`https://swapi.dev/api/people/${pilot}`);
@@ -47,16 +47,20 @@ await fetch_starships();
 // get a list of all pilots then fetch in parallel
 const pilotNums = new Set();
 
-for (const ship of starships) {
-    for (const pil_url of ship.pilots) {
-        const pilot_num = pil_url.match(/(\d+)/)[0];
-        pilotNums.add(pilot_num);
-    }
-}
+// gets the pilot num from the url
+const getPilotNum = url => url.match(/(\d+)/)[0];
+
+// I choose to not use {} when only a single line of code needed, imo it looks cleaner for short sections
+for (const ship of starships)
+    for (const pil_url of ship.pilots)
+         pilotNums.add(getPilotNum(pil_url));
+
+
 
 await Promise.all([...pilotNums].map(fetch_pilot))
 
 console.log("s len: ", starships.length)
 console.log("p len: ", Object.keys(pilots).length)
 // console.log("nums: ", pilotNums);
-console.log(pilots)
+// console.log(pilots['1'])
+// console.log(starships)

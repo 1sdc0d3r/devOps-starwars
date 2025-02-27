@@ -1,0 +1,21 @@
+{
+  "name": "devops-starwars",
+  "version": "1.0.0",
+  "main": "starwars.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./starwars.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1sdc0d3r/devOps-starwars.git"
+  },
+  "author": "Braden Bell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1sdc0d3r/devOps-starwars/issues"
+  },
+  "homepage": "https://github.com/1sdc0d3r/devOps-starwars#readme",
+  "description": ""
+}
