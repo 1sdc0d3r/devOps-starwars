@@ -4,7 +4,6 @@ docker build -t 1sdc0d3r/devops-starwars:1.0 .
 
 # Documentation: Is the README clear and does it provide all required instructions for building and running the solution?
 
-
 Your README.md should include:
 
 A brief explanation of your approach.
