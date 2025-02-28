@@ -12,7 +12,7 @@
     "url": "git+https://github.com/1sdc0d3r/devOps-starwars.git"
   },
   "author": "Braden Bell",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/1sdc0d3r/devOps-starwars/issues"
   },
