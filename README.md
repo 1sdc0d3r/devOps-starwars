@@ -1,38 +1,85 @@
-# Instructions on building/running the container, an explanation of your approach, and bonus deployment considerations
+# StarWars Ship-Pilot Registry
+- This project was built to show what pilots are associated with known starships. This data comes from The Star Wars API (https://swapi.dev).
 
-docker build -t 1sdc0d3r/devops-starwars:1.0 .
+## Table of Contents
+- [Approach](#approach)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Ideas](#ideas)
+- [Production-Deployment-Strategy](#production-deployment-strategy)
 
-# Documentation: Is the README clear and does it provide all required instructions for building and running the solution?
-
-Your README.md should include:
-
-A brief explanation of your approach.
-Step-by-step instructions on how to build the Docker image and run the container.
-Any additional notes on assumptions or design choices.
-Optional Bonus Section:
-A section discussing production deployment considerations (see below).
+## Approach
+ The starwars.js file contains a few functions to fetch all available starships through a paginated response. Once the starships are retrieved, all pilot id's are extracted and then fetched in parallel to increase efficiency. Once all the data is retrieved, the data is then logged to the console in a easily readable manner.
 
 
-Bonus: Production Deployment Considerations
+## Installation
+1. Clone the repository:
+```bash
+ git clone https://github.com/1sdc0d3r/devOps-starwars.git
+```
+<!-- # Instructions on building/running the container, an explanation of your approach, and bonus deployment considerations -->
 
-For candidates looking to demonstrate additional aptitude, please include a section in your README (or a separate document) outlining how you would deploy this solution in a production environment. Your discussion should cover, but is not limited to, the following topics:
 
-Container Orchestration & Scaling:
+2. Start Docker:
+ If you don't have docker installed you may download it from: https://www.docker.com/products/docker-desktop/
+ ```bash 
+ Mac: run "open -a docker"
 
-Deployment using orchestration tools (e.g., Kubernetes, Docker Swarm).
-Strategies for scaling the application (e.g., auto-scaling based on load).
-Monitoring & Logging:
+Windows: 
+1. Start->Run-> services.msc
+2. Search for service named "Docker" or "Docker Desktop"
+3. Start service
+```
+If you are not able to start docker please refer to this link: https://docs.docker.com/engine/daemon/start/
 
-Tools and techniques to monitor the application’s health and performance.
-Strategies for centralized logging (e.g., ELK Stack, Fluentd).
-CI/CD Pipeline:
+3. Build a docker image:
+```bash
+docker build -t 1sdc0d3r/devops-starwars .
+```
 
-How you would integrate your Docker build process into a CI/CD pipeline.
-Steps for automated testing, security scanning, and deployment.
-Security & Reliability:
+## Usage
+To run the project locally (without docker), use the following commands:
+```bash
+npm i && npm start
+```
 
-Security considerations (e.g., vulnerability scanning, minimal base images, secrets management).
-Ensuring reliability and availability (e.g., health checks, redundancy, fault tolerance).
-Configuration Management:
+To run the project via docker, use the following command:
+```bash
+docker run 1sdc0d3r/devops-starwars
+```
 
-Handling configuration settings for different environments (development, staging, production) using environment variables or configuration files.
+## License
+This project is licensed under the [MIT License](LICENSE).
+
+## Ideas
+- Allow user to search for a specific starship to get more details on ship and/or get pilots for said ship
+- Allow search for pilot to get all ships they can fly, and/or get more information about the pilot
+
+## Production-Deployment-Strategy
+
+## 1. Container Orchestration & Scaling
+
+### Orchestration Tools
+- **Docker Swarm**: Suitable for simpler containerized applications to increase availability, load balance, and scale across multiple nodes.
+
+### Scaling Strategies
+- **Auto-Scaling**: You can use Kubernetes to autoscale based on CPU usage and memory utilization.
+
+## 2. Monitoring & Logging
+
+### Monitoring Tools
+- **Kubernetes Metrics Server**: Metrics Server is scalable, and a source of container resource metrics (CPU, memory) for Kubernetes with built-in autoscaling pipelines.
+
+### Logging Strategies
+- **Centralized Logging**: Use ELK Stack (Elasticsearch, Logstash, Kibana) or Fluentd for aggregating and visualizing logs.
+
+## 3. CI/CD Pipeline
+
+### Docker Build Integration
+- **Other Tools**: Implement CI/CD using GitHub Actions or GitLab CI
+
+### Pipeline Stages
+1. **Build Stage**: Build Docker image and push to a container registry (via build integration tools)
+2. **Test Stage**: Run unit tests, integration tests, and security scans. This can be done automatically and then deployed if all tests pass.
+3. **Deploy Stage**: Deploy to Kubernetes or other docker hosting platform.
