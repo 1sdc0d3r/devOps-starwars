@@ -1,6 +1,7 @@
 const starships = [];
 const pilots = {};
 
+
 async function fetch_starships(url = "https://swapi.dev/api/starships") {
     try  {
         // url_page++
@@ -55,6 +56,8 @@ await Promise.all([...pilotNums].map(fetch_pilot))
 // console.log("s len: ", starships.length)
 // console.log("p len: ", Object.keys(pilots).length)
 
+// let pilot_count = new Set() -- Just confirming ALL pilots were accounted for at least 1 starship
+
 starships.forEach(ship=>{
     console.log("\nStarship:", ship.name)
     if (!ship.pilots.length){
@@ -62,9 +65,12 @@ starships.forEach(ship=>{
     }
     for(const pilot of ship.pilots){
         const pilNum = getPilotNum(pilot);
+        // pilot_count.add(pilNum)
         console.log("    ",pilots[pilNum]['name'])
     }
 })
+
+// console.log(pilot_count)
 
 // console.log(pilots)
 // console.log(starships[0].pilots)

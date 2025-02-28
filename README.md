@@ -46,7 +46,7 @@ npm i && npm start
 
 To run the project via docker, use the following command:
 ```bash
-docker run 1sdc0d3r/devops-starwars
+docker run --rm 1sdc0d3r/devops-starwars
 ```
 
 ## License
