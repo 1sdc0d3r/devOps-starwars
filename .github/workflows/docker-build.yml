@@ -13,7 +13,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag 1sdc0d3r/devops-starwars
-      # :$(date +%s)
 
     - name: Login to Docker Hub
       run: docker login -u 1sdc0d3r -p ${{ secrets.DOCKER_HUB_TOKEN }} docker.io
