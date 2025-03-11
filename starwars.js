@@ -65,8 +65,9 @@ let max_successful_fetch = 0;
 while (true){
     console.log("B", {max_page_fetch}, {max_successful_fetch})
     // if (await fetch_starship_async(max_page_fetch)){
-//! 5 not working-- 1,2,3,6,9 breaks
-    if(max_page_fetch <= 10){
+//! 1,2,3 breaks , 5 breaking alg?
+//? do I need to utilize another max_page_fetch for highest success (look at the max_page_fetch (true/false) when pages == 5 or 6) -- The max_page_fetch is higher than the prev max page fetch on a false. ISSUE!!
+    if(max_page_fetch <= 6){
         console.log("***True***")
         max_successful_fetch = max_page_fetch
         max_page_fetch *= 2
@@ -74,7 +75,7 @@ while (true){
         console.log("***False***")
         if(max_page_fetch == max_successful_fetch + 1 && max_successful_fetch>1) break;
         max_page_fetch = Math.ceil((max_page_fetch - max_successful_fetch / 2 )+1) //? utilize 2/3 for larger sets up data? jump down by thirds to reduce excess calls in large pagination sets
-        if (max_page_fetch < max_successful_fetch) max_page_fetch = max_successful_fetch + 1;
+        if ((max_page_fetch < max_successful_fetch || max_page_fetch == max_successful_fetch)) max_page_fetch = max_successful_fetch + 1; //* the || section is used for page's 6,9 sidecases
     }
     console.log("A", {max_page_fetch}, {max_successful_fetch})
 
