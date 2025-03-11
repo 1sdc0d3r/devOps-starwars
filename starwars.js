@@ -75,7 +75,7 @@ while (true){
         console.log("***False***")
         if(max_page_fetch == max_successful_fetch + 1 && max_successful_fetch>1) break;
         max_page_fetch = Math.ceil((max_page_fetch - max_successful_fetch / 2 )+1) //? utilize 2/3 for larger sets up data? jump down by thirds to reduce excess calls in large pagination sets
-        if ((max_page_fetch < max_successful_fetch || max_page_fetch == max_successful_fetch)) max_page_fetch = max_successful_fetch + 1; //* the || section is used for page's 6,9 sidecases
+        if ((max_page_fetch < max_successful_fetch || max_page_fetch == max_successful_fetch)) max_page_fetch = max_successful_fetch + 1; //* the || section is used for page's 6,9 sidecases (may not need when issue above is solved...)
     }
     console.log("A", {max_page_fetch}, {max_successful_fetch})
 
