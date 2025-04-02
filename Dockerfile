@@ -1,4 +1,6 @@
 FROM amazonlinux:2
+# FROM public.ecr.aws/amazonlinux/amazonlinux:latest
+
 #todo change from latest to current version *now*
 
 #* cmd to run each RUN non-consecutively: docker build --no-cache -t devops-starwars .
@@ -6,35 +8,31 @@ WORKDIR /app
 
 COPY package*.json ./
 
-# Update system
-RUN yum update -y
-
-# Enable and install EPEL repository
-RUN amazon-linux-extras enable epel && \
+# Update system and install dependencies
+RUN yum update -y && \
+    amazon-linux-extras enable epel && \
     yum clean metadata && \
-    yum install -y epel-release
+    yum install -y epel-release curl gcc-c++ make && \
+    curl -sL https://rpm.nodesource.com/setup_16.x | bash - && \
+    yum install -y nodejs && \
+    yum install -y httpd && \
+    yum clean all && \
+    rm -rf /var/cache/yum && \
+    npm config set update-notifier false && \
+    npm install
 
-# Install curl
-RUN yum install -y curl
+# RUN echo 'Hello World!' > /var/www/html/index.html
 
-# Install gcc-c++
-RUN yum install -y gcc-c++
 
-# Install make
-RUN yum install -y make
+# # Configure Apache
+# RUN echo 'mkdir -p /var/run/httpd' >> /root/run_apache.sh && \
+#  echo 'mkdir -p /var/lock/httpd' >> /root/run_apache.sh && \
+#  echo '/usr/sbin/httpd -D FOREGROUND' >> /root/run_apache.sh && \
+#  chmod 755 /root/run_apache.sh
 
-# Add NodeSource repository
-RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+# EXPOSE 80
 
-# Install Node.js
-RUN yum install -y nodejs
-
-# Clean up
-RUN yum clean all
-RUN rm -rf /var/cache/yum
-RUN npm config set update-notifier false
-
-RUN npm install
+# CMD /root/run_apache.sh
 
 COPY . .
 
