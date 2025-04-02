@@ -25,6 +25,7 @@
  If you don't have docker installed you may download it from: https://www.docker.com/products/docker-desktop/
  ```bash 
  Mac: run "open -a docker"
+ # this runs open application docker
 
 Windows: 
 1. Start->Run-> services.msc

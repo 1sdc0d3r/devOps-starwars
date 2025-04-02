@@ -64,7 +64,7 @@ let max_false_fetch = null;
 // await fetch_starship_async(5);
 // while(max_successful_fetch < cur_page_fetch){
 while (true){
-    console.log("B", {cur_page_fetch}, {max_successful_fetch})
+    console.log("B", {cur_page_fetch}, {max_successful_fetch}, {max_false_fetch})
     // if (await fetch_starship_async(cur_page_fetch)){
     //! 1,2,3 breaks , 5 breaking alg?
     //? do I need to utilize another cur_page_fetch for highest success (look at the cur_page_fetch (true/false) when pages == 5 or 6) -- The cur_page_fetch is higher than the prev max page fetch on a false. ISSUE!!
@@ -76,7 +76,12 @@ while (true){
         // } else {
         // }
         //todo pseudocode this back out. the doubleling is exceeding the highest false attempt. No need to jump that high
-        cur_page_fetch*=2;
+        if(max_false_fetch != null && cur_page_fetch*2 > max_false_fetch){
+            // cur_page_fetch = Math.ceil()
+            // cur_page_fetch=Math.ceil(max_successful_fetch+)
+        }else{
+            cur_page_fetch*=2;
+        }
         // if (max_false_fetch == null) cur_page_fetch *= 2;
         // else cur_page_fetch = max_false_fetch-cur_page_fetch/2
 
@@ -94,7 +99,7 @@ while (true){
         //* the || section is used for page's 6,9 sidecases (may not need when issue above is solved...)
         if ((cur_page_fetch < max_successful_fetch || cur_page_fetch == max_successful_fetch)) cur_page_fetch = max_successful_fetch + 1;
     }
-    console.log("A", {cur_page_fetch}, {max_successful_fetch})
+    console.log("A", {cur_page_fetch}, {max_successful_fetch}, {max_false_fetch}, '\n')
 }
 
 // get a list of all pilots then fetch in parallel - this is done to decrease the time needed to fetch starships
