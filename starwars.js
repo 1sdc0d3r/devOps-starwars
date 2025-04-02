@@ -5,6 +5,7 @@ const pilots = {};
 
 async function fetch_starships(url = "https://swapi.dev/api/starships") {
     try  {
+        
         // url_page++
         // console.log(`fetching ${url}`)
         //* attempt to fetch next paginated url before prior fetch
