@@ -1,0 +1,54 @@
+<repomd xmlns="http://linux.duke.edu/metadata/repo">
+  <revision>1742424038</revision>
+  <data type="primary">
+    <checksum type="sha256">7e0221b931c627b6d64c569f10a70c8a88af4a9649a5a3e53cc876b3e383759a</checksum>
+    <open-checksum type="sha256">5e28743cfde265d1dc5ed232f67dfb4c3e0f8e144fa881d8c68d154a998cb6b7</open-checksum>
+    <location href="repodata/primary.xml.gz" />
+    <timestamp>1742424038</timestamp>
+    <size>816</size>
+    <open-size>1834</open-size>
+  </data>
+  <data type="filelists">
+    <checksum type="sha256">0ea5bf594d05caa37adcab017ac4fa71bb72039084034a411f1cff61c3a323c0</checksum>
+    <open-checksum type="sha256">b27f8437722f1caa555c454ef5a692bc955a571902929a398d25df272ed0452e</open-checksum>
+    <location href="repodata/filelists.xml.gz" />
+    <timestamp>1742424038</timestamp>
+    <size>352</size>
+    <open-size>602</open-size>
+  </data>
+  <data type="other">
+    <checksum type="sha256">3948f7e7f0c297bb8810adb8b5960181bd290213012c6dd19163772ec8c01ad3</checksum>
+    <open-checksum type="sha256">d588c30c902e46f1ffb88e5c00c4179306d6e363407e8dc3b33c8e301384da2d</open-checksum>
+    <location href="repodata/other.xml.gz" />
+    <timestamp>1742424038</timestamp>
+    <size>752</size>
+    <open-size>1833</open-size>
+  </data>
+  <data type="primary_db">
+    <checksum type="sha256">02241ca97b092903f3c969d025048b82516928af6e6595ea482dbb3e67d9a0a6</checksum>
+    <open-checksum type="sha256">81a73512f53c354fb1ecd9ca42668796d4b0167ea5b78ced7305cff89fa53a24</open-checksum>
+    <location href="repodata/primary.sqlite.gz" />
+    <timestamp>1742424038</timestamp>
+    <size>2297</size>
+    <open-size>106496</open-size>
+    <database_version>10</database_version>
+  </data>
+  <data type="filelists_db">
+    <checksum type="sha256">ff49e314ec36659c9d4f774bb64a8b9e1b78e4a9b7d624e638099ea594accfab</checksum>
+    <open-checksum type="sha256">16b75f94cc2da81c74644a5d35305ba7115062124b3117801bed4da1dabbb3f0</open-checksum>
+    <location href="repodata/filelists.sqlite.gz" />
+    <timestamp>1742424038</timestamp>
+    <size>925</size>
+    <open-size>28672</open-size>
+    <database_version>10</database_version>
+  </data>
+  <data type="other_db">
+    <checksum type="sha256">d17575b8c589a2605ae0832aca8b9d488211275ea6cf54e8cc5a7d28da92c5b8</checksum>
+    <open-checksum type="sha256">b0e9d1a47a844e4a8e8d84743ecec05dec54c5844f6a9792c7f7f00b74033a80</open-checksum>
+    <location href="repodata/other.sqlite.gz" />
+    <timestamp>1742424038</timestamp>
+    <size>1287</size>
+    <open-size>24576</open-size>
+    <database_version>10</database_version>
+  </data>
+</repomd>

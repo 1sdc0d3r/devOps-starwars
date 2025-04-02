@@ -19,6 +19,6 @@
   "homepage": "https://github.com/1sdc0d3r/devOps-starwars#readme",
   "description": "",
   "dependencies": {
-    "node": "^23.9.0"
+    "node-fetch": "^3.3.2"
   }
 }

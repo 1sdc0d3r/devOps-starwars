@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 const starships = [];
 const pilots = {};
 

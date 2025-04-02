@@ -1,18 +1,40 @@
 FROM amazonlinux:2
 #todo change from latest to current version *now*
 
+#* cmd to run each RUN non-consecutively: docker build --no-cache -t devops-starwars .
 WORKDIR /app
 
 COPY package*.json ./
 
-# gnupg is needed to verify NodeSource script
-RUN yum update -y && \
-    yum install -y curl gcc-c++ make && \
-    curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash && \
-    yum install -y nodejs && \
-    yum clean all && \
-    rm -rf /var/cache/yum && \
-    npm config set update-notifier false
+# Update system
+RUN yum update -y
+
+# Enable and install EPEL repository
+RUN amazon-linux-extras enable epel && \
+    yum clean metadata && \
+    yum install -y epel-release
+
+# Install curl
+RUN yum install -y curl
+
+# Install gcc-c++
+RUN yum install -y gcc-c++
+
+# Install make
+RUN yum install -y make
+
+# Add NodeSource repository
+RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash -
+
+# Install Node.js
+RUN yum install -y nodejs
+
+# Clean up
+RUN yum clean all
+RUN rm -rf /var/cache/yum
+RUN npm config set update-notifier false
+
+RUN npm install
 
 COPY . .
 
